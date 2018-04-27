@@ -24,7 +24,7 @@ public class BulletController : MonoBehaviour {
 		if (other.tag == "Enemy") {
 			Destroy(other.gameObject);
 			Destroy(gameObject);
-			// Increase player score
+			PlayerScore.playerScore += 50;
 		} else if (other.tag == "Shield") {
 			Destroy(gameObject);
 		}
