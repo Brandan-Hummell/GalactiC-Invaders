@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour {
 	
     void MoveEnemy () {
 
-		enemyHolder.position = Vector3.right * speed;
+		enemyHolder.position += Vector3.right * speed;
 
 		foreach (Transform enemy in enemyHolder) {
             if (enemy.position.x <= -6 || enemy.position.x >= 6) {
@@ -31,14 +31,17 @@ public class EnemyController : MonoBehaviour {
 			}
 
 			// Enemy bullet logic
+			if (Random.value > fireRate) {
+				Instantiate (shot, enemy.position, enemy.rotation);
+			}
 
-			if (enemy.position.y <= -2) {
+			if (enemy.position.y <= -7) {
 				GameOver.isPlayerDead = true;
 				Time.timeScale = 0;
 			}
 		}
 
-	    if (enemyHolder.childCount == 1 || enemyHolder.childCount == 2) {
+        if (enemyHolder.childCount == 1) {
 			CancelInvoke();
 			InvokeRepeating("MoveEnemy", 0.1f, 0.25f);
 		}
