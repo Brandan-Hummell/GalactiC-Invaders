@@ -9,12 +9,10 @@ public class EnemyController : MonoBehaviour {
 	private Transform enemyHolder;
 	public float speed;
     public GameObject shot;
-	public Text winText;
 	public float fireRate = 0.997f;
 
 	// Use this for initialization
 	void Start () {
-		winText.enabled = false;
 		InvokeRepeating("MoveEnemy", 0.1f, 0.3f);
 		enemyHolder = GetComponent<Transform>();
 	}
@@ -46,9 +44,12 @@ public class EnemyController : MonoBehaviour {
 			InvokeRepeating("MoveEnemy", 0.1f, 0.25f);
 		}
 
-		if (enemyHolder.childCount == 0) {
-			winText.enabled = true;
-			// Logic for resetting the scene for the next level
+		if (enemyHolder.childCount == 0 && Time.timeScale == 1) {
+			LevelController.didPlayerWin = true;
+			LevelController.level++;
+			LevelController.levelTracker.text = "Victory! Now Starting Level " + LevelController.level;
+			LevelController.levelTracker.enabled = true;
+			Time.timeScale = 0;
 		}
 	}
 }
