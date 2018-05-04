@@ -24,6 +24,7 @@ public class EnemyBulletController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
 			Destroy(other.gameObject);
+			PlayerLifeSystem.playerLives--;
 			Destroy(bullet.gameObject);
 			GameOver.isPlayerDead = true;
 		} else if (other.tag == "Shield") {

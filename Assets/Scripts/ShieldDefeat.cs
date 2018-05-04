@@ -12,6 +12,7 @@ public class ShieldDefeat : MonoBehaviour {
 	
 	void Update () {
 		if (playerShield.childCount == 0) {
+			PlayerLifeSystem.playerLives = 0;
 			GameOver.isPlayerDead = true;
 		}
 	}
