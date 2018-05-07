@@ -18,6 +18,6 @@ public class PlayerLifeSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		lifeText.text = "Player Lives: " + playerLives;
+		lifeText.text = "Extra Lives: " + playerLives - 1;
 	}
 }
