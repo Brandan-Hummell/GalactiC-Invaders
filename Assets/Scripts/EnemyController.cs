@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class EnemyController : MonoBehaviour {
     
 	private Transform enemyHolder;
-	public float speed;
+	public static float speed = 0.20f + (LevelController.level * 0.01f);
     public GameObject shot;
-	public float fireRate = 0.997f;
+	public static float fireRate = 0.997f - (LevelController.level * 0.001f);
 
 	// Use this for initialization
 	void Start () {

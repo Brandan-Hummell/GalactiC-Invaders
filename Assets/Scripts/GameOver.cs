@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour {
 
@@ -21,8 +22,8 @@ public class GameOver : MonoBehaviour {
 	
 	void Update () {
 		if (isPlayerDead && PlayerLifeSystem.playerLives == 0) {
-			Time.timeScale = 0;
-			gameOver.enabled = true;
+			ResetGame();
+			SceneManager.LoadScene("Game_Over");
 		} else if (isPlayerDead && Time.timeScale == 1) {
             timeOfDeath = Time.realtimeSinceStartup;
 			Time.timeScale = 0;
@@ -33,5 +34,12 @@ public class GameOver : MonoBehaviour {
 				isPlayerDead = false;
 			}
 		}
+	}
+
+	void ResetGame() {
+		isPlayerDead = false;
+		LevelController.level = 1;
+		PlayerScore.playerScore = 0;
+		PlayerLifeSystem.playerLives = 3;
 	}
 }
